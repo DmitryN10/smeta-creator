@@ -1,0 +1,4 @@
+rootProject.name = 'smeta'
+
+include ':ui'
+//include ':core'

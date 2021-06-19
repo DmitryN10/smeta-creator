@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="securityApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="securityApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="securityApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="securityApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Security</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/libs/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="/libs/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap-responsive.min.css" media="screen">
+    <link rel="stylesheet" href="/libs/ui-select/select.min.css">
+    <link rel="stylesheet" href="/css/common/styles.css" media="screen">
+    <link rel="stylesheet" href="/libs/bootstrap-datepicker/datepicker.css">
+    <link rel="stylesheet" href="/libs/angular-datepicker/index.css">
+    <link rel="stylesheet" href="/libs/angular-loading-bar/loading-bar.css">
+    <link rel="stylesheet" href="/libs/angular-snackbar/angular.snackbar.css">
+    <link rel="stylesheet" href="/libs/angucomplete-alt/angucomplete-alt.css">
+
+    <!--handsontable-->
+    <link rel="stylesheet" media="screen"
+          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.css">
+    <link rel="stylesheet" media="screen"
+          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.css">
+
+</head>
+<body>
+<style type="text/css">
+    input.short {
+        padding: 2px;
+    }
+
+    .datepicker {
+        z-index: 999 !important;
+    }
+
+    .ui-select-match-text {
+        font-size: 12px;
+    }
+
+    .ui-select-toggle {
+        padding-left: 5px;
+        padding-right: 15px;
+        overflow: hidden;
+        display: inline-block;
+        width: 80%;
+    }
+
+    .angucomplete-holder {
+        max-width: 200px;
+    }
+
+    .select_menu_item {
+        font-size: 12px;
+    }
+</style>
+
+<!-- Navbar -->
+<div class="navbar navbar-inverse" style="margin-bottom: 1px">
+    <div class="container">
+        <div class="nav navbar-nav" style="padding-left: 50px" ng-controller="ActiveMenuController">
+            <li ng-class="activeFor('/smetaOld')"><a href="#smetaOld">Составление сметы(старый вариант)</a></li>
+            <li ng-class="activeFor('/smeta')"><a href="#smeta">Составление сметы</a></li>
+            <li ng-class="activeFor('/hello')"><a href="#hello">Сохраненные сметы</a></li>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout_handler" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- / Navbar -->
+<div class="container">
+    <div ng-view></div>
+</div>
+<div class="snackbar-container" data-snackbar="true"></div>
+
+<!-- common libs  -->
+<script src="/libs/jquery/jquery-1.11.0.js"></script>
+<script src="/libs/jquery/jquery-ui.js"></script>
+<script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/libs/angular/angular.js"></script>
+<script src="/libs/angular-resource/angular-resource.min.js"></script>
+<script src="/libs/angular-route/angular-route.min.js"></script>
+<script src="/libs/angular-loading-bar/loading-bar.min.js"></script>
+<script src="/libs/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/libs/angular-snackbar/angular.snackbar.min.js"></script>
+<script src="/libs/ui-select/select.min.js"></script>
+<script src="/libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+<script src="/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/libs/angular-multiselect/angularjs-dropdown-multiselect.min.js"></script>
+<script src="/libs/angucomplete-alt/angucomplete-alt.min.js"></script>
+<script src="/libs/angular-confirm-1.1.0/angular-confirm.js"></script>
+<script src="/js/underscore-min.js"></script>
+
+<!--handsontable-->
+<script src="/libs/ngHandsontable-0.6.0/dist/ngHandsontable.js"></script>
+<script src="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.js"></script>
+
+<!-- Custom scripts -->
+<script src="/js/functions.js"></script>
+<script src="/common/js/service.js"></script>
+<script src="/common/js/directives/main-directives.js"></script>
+<script src="/js/fileType.js"></script>
+<script src="/common/js/controller/ActiveMenuController.js"></script>
+<script src="/services.js"></script>
+<script src="/app.js"></script>
+
+<script src="/controllers/MarketCorrelController.js"></script>
+<script src="/controllers/MarketCorrelControllerOld.js"></script>
+
+</body>
+</html>

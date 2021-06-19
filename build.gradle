@@ -1,0 +1,20 @@
+allprojects {
+
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation platform('org.springframework.boot:spring-boot-dependencies:2.2.4.RELEASE')
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

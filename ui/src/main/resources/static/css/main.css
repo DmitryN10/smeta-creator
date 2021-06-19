@@ -1,0 +1,82 @@
+body {
+    padding-top: 60px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#ipvMainMenu {
+    min-height: 41px; height: 41px; margin: 0 !important;
+    background-color: #4b9cd7 !important;
+    background-image: linear-gradient(#4b9cd7, #4091ca);
+    border: #369 solid; border-width: 0 0 1px 0;
+    border-radius: 0 !important;
+}
+#ipvMainMenu .navbar-brand {
+    height: 40px !important; padding: 10px 10px 10px 15px !important; margin:0 5px 0 -25px !important;
+    background-color: #4b9cd7; background-image: linear-gradient(#4b9cd7, #4091ca /*#1071a5*/);
+    border: #333 solid; border-width: 0 1px 0 0;
+    cursor: default;
+}
+
+#ipvMainMenu .navbar-brand > span > a {
+    font-family: Impact, Charcoal, sans-serif; font-size: 40px !important;
+    color: #fff; text-shadow: 0 0 4px #036;
+}
+
+#ipvMainMenu .navbar-nav > li > a {
+    line-height: 21px; font-size: 13px; font-weight: bold;
+    float: left; padding: 10px;
+    color: #fff; text-shadow: 0 0 2px #369;
+}
+#ipvMainMenu .navbar-nav > li > a:hover {
+    color: #fff; text-shadow: 0 0 2px #036;
+    background-color: #5bace7;
+}
+#ipvMainMenu .active > a {
+    padding-bottom: 12px !important;
+    color: #157fcc !important; text-shadow: none !important;
+    background-color: #add2ed !important;
+}
+
+.dropdown-menu li > a { color: #1b376c !important; }
+.dropdown-menu li > a:hover {
+    color: #fff !important;
+    background-color: #5bace7 !important;
+}
+li.active a.dropdown-toggle { height: 42px !important; }
+
+.open > a { background-color: #5bace7 !important; }
+
+.nav-select-item {
+    position: relative; display: inline-block; float: left;
+    top: -3px; width: 120px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+    padding: 2px 5px; margin: 0 0 0 4px;
+    border: #5bace7 solid 1px; border-radius: 2px;
+}
+a:hover .nav-select-item { border-color: #8dc2dd; }
+.active .nav-select-item, .open .nav-select-item { border-color: #8db2cd !important; }
+
+#ipvMainWindow {
+    position: fixed; top: 41px; left:0; right:0; bottom: 0;
+    border: #add2ed solid; border-width: 4px 0 0 0;
+}

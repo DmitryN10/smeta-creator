@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db-smeta:
+    image: postgres:12
+    restart: always
+    ports:
+      - 8888:5432
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: smeta
+#  demo-security:
+#    build:
+#      context: .
+#    ports:
+#      - "7777:8080"
