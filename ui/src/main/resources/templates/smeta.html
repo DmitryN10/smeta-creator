@@ -26,11 +26,15 @@
                                    class="form-control date-type"
                                    ng-change="recalcPrices()"
                             >
-
+                            <div class="col-sm-12">
+                                <h4 ng-if="!counterparty.region" class="alert alert-danger">
+                                    Выберите объект!
+                                </h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="content-box" style="margin-top: 10px;">
+                <div ng-if="counterparty.region" class="content-box" style="margin-top: 10px;">
                         <button class="btn btn-default" ng-click="add()">Добавить</button>
                         <button class="btn btn-default" ng-click="del()">Удалить</button>
                     <div class="pull-right">
@@ -39,15 +43,10 @@
                 </div>
                 <div class="content-box">
                     <div style="display: table; width:100%;">
-                        <hot-table id="hotCorrel"
-                                   class="hotMarket"
-                                   settings="hotSettings"
-                                   columns="hotColumns"
-                                   datarows="pairs">
-                        </hot-table>
+                        <div id="example2" class="hot handsontable htColumnHeaders"></div>
                     </div>
                 </div>
-                <div class="content-box">
+                <div class="content-box" ng-if="counterparty.region">
                     <div style="display: table; width:100%;">
                         <div class="pull-right">
                             <div class="col-sm-12">
@@ -65,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-box" style="margin-top: 10px;">
+                <div class="content-box" ng-if="counterparty.region" style="margin-top: 10px;">
                     <label class="control-label" for="counterpartySelect" style="padding-right: 10px;margin-left: 5px;">Выгрузка
                         в формате:</label>
                     <button class="btn btn-info" ng-click="filterUsers()">Смета</button>

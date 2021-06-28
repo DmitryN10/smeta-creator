@@ -27,10 +27,15 @@
     <link rel="stylesheet" href="/libs/angucomplete-alt/angucomplete-alt.css">
 
     <!--handsontable-->
+<!--    <link rel="stylesheet" media="screen"-->
+<!--          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.css">-->
+<!--    <link rel="stylesheet" media="screen"-->
+<!--          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.css">-->
+
     <link rel="stylesheet" media="screen"
-          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.css">
+          href="/libs/ngHandsontable-6.2.2/dist/handsontable.css">
     <link rel="stylesheet" media="screen"
-          href="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.css">
+          href="/libs/ngHandsontable-6.2.2/dist/handsontable.full.css">
 
 </head>
 <body>
@@ -68,7 +73,7 @@
 <div class="navbar navbar-inverse" style="margin-bottom: 1px">
     <div class="container">
         <div class="nav navbar-nav" style="padding-left: 50px" ng-controller="ActiveMenuController">
-            <li ng-class="activeFor('/smetaOld')"><a href="#smetaOld">Составление сметы(старый вариант)</a></li>
+<!--            <li ng-class="activeFor('/smetaOld')"><a href="#smetaOld">Составление сметы(старый вариант)</a></li>-->
             <li ng-class="activeFor('/smeta')"><a href="#smeta">Составление сметы</a></li>
             <li ng-class="activeFor('/hello')"><a href="#hello">Сохраненные сметы</a></li>
         </div>
@@ -104,7 +109,8 @@
 
 <!--handsontable-->
 <script src="/libs/ngHandsontable-0.6.0/dist/ngHandsontable.js"></script>
-<script src="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.js"></script>
+<!--<script src="/libs/ngHandsontable-0.6.0/handsontable-0.16.0/dist/handsontable.full.js"></script>-->
+<script src="/libs/ngHandsontable-6.2.2/dist/handsontable.full.js"></script>
 
 <!-- Custom scripts -->
 <script src="/js/functions.js"></script>

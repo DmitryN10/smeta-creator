@@ -6,6 +6,8 @@
         .controller('MarketCorrelController', ['$scope', 'snackbar', 'enitytService', function ($scope, snackbar, enitytService) {
             $scope.hotInstance = null;
             $scope.previousRegionId = null;
+            var example2 = document.getElementById('example2'),
+                hot2;
 
 
             $scope.entities = [];
@@ -30,33 +32,40 @@
                 smartButtonMaxItems: 1
             };
 
+            function getEntities() {
+                return $scope.pairs;
+            }
 
-            $scope.hotColumns = [
-
-                {data: 'index', title: 'N'+'\n'+'п/п', source: $scope.index, width: 50},
-                {data: 'id', title: 'N'+'\n'+'расц.', source: $scope.id, width: 50},
-
-                {data: 'name', title: "Наименование работ, \n материалов", type: 'dropdown', source: $scope.entityNames, width: 250},
-
-                {data: 'workType', title: 'Ед. измерения работ', width: 130},
-                {data: 'workScope', title: 'Объем работ', width: 100},
-                {data: 'workCost', title: 'Ст-ть за ед. измерения работ (руб.)', width: 220},
-                {data: 'workCostAll', title: 'Ст-ть работ итого (руб.)', width: 150},
-
-                {data: 'materialType', title: 'Ед. измерения материалов', width: 180},
-                {data: 'materialScope', title: 'Объем материалов', width: 130},
-                {data: 'materialCost', title: 'Ст-ть за ед. измерения матералов (руб.)', width: 100},
-                {data: 'materialCostAll', title: 'Ст-ть материалов итого (руб.)', width: 100},
-
-
-                {data: 'finalCost', title: 'Всего', finalCost: 120},
-            ];
-
-            $scope.hotSettings = {
+            hot2 = new Handsontable(example2, {
+                data: getEntities(),
                 minRows: 1,
                 allowInsertRow: true,
                 outsideClickDeselects: false,
                 height: 400,
+                colHeaders: ['N'+'\n'+'п/п', 'N'+'\n'+'расц.', 'Наименование работ, \n материалов',
+                    'Ед. измерения работ', 'Объем работ', 'Ст-ть за ед. измерения работ (руб.)', 'Ст-ть работ итого (руб.)',
+                    'Ед. измерения материалов', 'Объем материалов', 'Ст-ть за ед. измерения матералов (руб.)', 'Ст-ть материалов итого (руб.)',
+                    'Всего'
+                ],
+                columns: [
+                    {data: 'index', source: $scope.index, width: 50},
+                    {data: 'id', source: $scope.id, width: 50},
+
+                    {data: 'name', type: 'autocomplete', source: $scope.entityNames, strict: false, width: 240},
+
+                    {data: 'workType', width: 130},
+                    {type: 'numeric',data: 'workScope', width: 100},
+                    {type: 'numeric', data: 'workCost',  width: 220, numericFormat: {pattern: '0.00'}},
+                    {type: 'numeric', data: 'workCostAll',  width: 150, numericFormat: {pattern: '0.00'}},
+
+                    {data: 'materialType', width: 180},
+                    {type: 'numeric', data: 'materialScope', width: 130},
+                    {type: 'numeric',data: 'materialCost',  width: 100, numericFormat: {pattern: '0.00'}},
+                    {type: 'numeric', data: 'materialCostAll',  width: 100, numericFormat: {pattern: '0.00'}},
+
+
+                    {type: 'numeric', data: 'finalCost', width: 80, numericFormat: {pattern: '0.00'}}
+                ],
                 afterInit: function () {
                     $scope.hotInstance = this;
                 },
@@ -69,29 +78,35 @@
 
                         if (prop === 'name') {
                             let entity = $scope.entitiesByName.get(newValue);
-                            let isWork = entity.work;
-                            $scope.hotInstance.setDataAtCell(row, 1, entity.positionNumber);
-                            $scope.hotInstance.setDataAtCell(row, isWork? 3 : 7, entity.type);
-                            $scope.hotInstance.setCellMeta(row, isWork? 8 : 4, 'readOnly', true);
-                            $scope.hotInstance.setDataAtCell(row, isWork? 5 : 9, $scope.loadCost(entity));
-                            $scope.hotInstance.setCellMeta(row, 7 , 'readOnly', true);
-                            $scope.hotInstance.setCellMeta(row,  3, 'readOnly', true);
-                            $scope.hotInstance.setCellMeta(row, 5, 'readOnly', true);
-                            $scope.hotInstance.setCellMeta(row, 9 , 'readOnly', true);
+                            if (entity) {
+                                let isWork = true;
+                                $scope.hotInstance.setDataAtCell(row, 1, entity.positionNumber);
+                                $scope.hotInstance.setDataAtCell(row, isWork ? 3 : 7, entity.type);
+                                $scope.hotInstance.setCellMeta(row, isWork ? 8 : 4, 'readOnly', true);
+                                let value = $scope.loadCost(entity);
+                                $scope.hotInstance.setDataAtCell(row, isWork ? 5 : 9, value/*.toFixed(2)*/);
+                                $scope.hotInstance.setCellMeta(row, 7, 'readOnly', true);
+                                $scope.hotInstance.setCellMeta(row, 3, 'readOnly', true);
+                                $scope.hotInstance.setCellMeta(row, 5, 'readOnly', true);
+                                $scope.hotInstance.setCellMeta(row, 9, 'readOnly', true);
+                            }
                         }
                         if (prop === 'workScope'){
                             let cost = $scope.hotInstance.getDataAtCell(row, 5);
-                            $scope.hotInstance.setDataAtCell(row, 6, Math.round(newValue*cost));
-                            $scope.hotInstance.setDataAtCell(row, 11, Math.round(newValue*cost));
+                            $scope.hotInstance.setDataAtCell(row, 6,(newValue*cost)/*.toFixed(2)*/);
+                            $scope.hotInstance.setDataAtCell(row, 11, (newValue*cost)/*.toFixed(2)*/);
                         }
                         if (prop === 'materialScope'){
                             let cost = $scope.hotInstance.getDataAtCell(row, 9);
-                            $scope.hotInstance.setDataAtCell(row, 10, Math.round(newValue*cost));
-                            $scope.hotInstance.setDataAtCell(row, 11, Math.round(newValue*cost));
+                            $scope.hotInstance.setDataAtCell(row, 10, (newValue*cost)/*.toFixed(2)*/);
+                            $scope.hotInstance.setDataAtCell(row, 11, (newValue*cost)/*.toFixed(2)*/);
                         }
                     });
                 }
-            };
+            });
+
+
+
 
             $scope.loadCost = function (entity) {
                 let id = $scope.counterparty.regionId;
@@ -113,8 +128,7 @@
 
             $scope.init = function () {
                 $scope.date = new Date();
-                toBusinessDate($scope.date, -1);
-                $scope.pairs = [];
+                toBusinessDate($scope.date, 0);
                 $scope.loadAllCounterparties();
                 $scope.loadAll();
             };
@@ -152,22 +166,13 @@
 
             $scope.add = function () {
                 $scope.pairs.push({});
-                $scope.changed = true;
             };
 
             $scope.del = function() {
-                if ($scope.hotInstance) {
-                    var sel = $scope.hotInstance.getSelected();
-                    if (sel) {
-                        _.each($scope.pairs, function(fn, index) {
-                            if (index >= sel[0] && index <= sel[2]) {
-                                fn.del = true;
-                            }
-                        });
-                    }
-                    $scope.hotInstance.deselectCell();
-                }
-                $scope.pairs = _.filter($scope.pairs, function(p){ return !(p.del || false) });
+                var sel = $scope.hotInstance.getSelected();
+                let from = sel[0][0];
+                let to = sel[0][2];
+                $scope.hotInstance.alter('remove_row', from, 1);
             };
 
             $scope.recalcPrices = function (){
@@ -196,5 +201,6 @@
                     comments: !frozenFlag
                 });
             }
+
         }])
 })(window.angular, window.prepareResponse, window.toBusinessDate);
